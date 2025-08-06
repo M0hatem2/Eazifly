@@ -1,0 +1,279 @@
+<nav [ngClass]="isHome() ? 'text-white bg-transparent' : 'text-black bg-white shadow-md'"
+    class="fixed lg:absolute top-0 left-0 w-full z-50 transition-all duration-300 bg-white lg:bg-[#ffffff14]  shadow-2xl ">
+
+    <!-- الحاوية الرئيسية -->
+    <div [ngClass]=" isAdminRoute()?'hidden':''" class=" mx-auto     flex p-6  justify-between h-16">
+
+        <!-- الشعار -->
+        <a routerLink="/home" class="flex items-center z-50">
+            <svg width="150" height="64" viewBox="0 0 150 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="150" height="64" fill="url(#pattern0_209_650)" />
+                <svg width="150" height="64" viewBox="0 0 150 64" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="150" height="64" fill="url(#pattern0_209_650)" />
+                    <defs>
+                        <pattern id="pattern0_209_650" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_209_650" transform="scale(0.00333333 0.0078125)" />
+                        </pattern>
+                        <image id="image0_209_650" width="300" height="128" preserveAspectRatio="none"
+                            xlink:href="data:image/png;base64,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" />
+                    </defs>
+                </svg>
+
+            </svg>
+        </a>
+
+        <!-- زر القائمة للموبايل -->
+        <button (click)="isMenuOpen = !isMenuOpen"
+            class="lg:hidden p-2 rounded-lg focus:outline-none  focus:ring-gray-300 transition duration-300"
+            [ngClass]="isHome() ? 'text-black lg:text-white' : 'text-black'">
+            <svg *ngIf="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg *ngIf="isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- روابط الديسكتوب -->
+        <ul class="hidden lg:flex items-center space-x-8 text-lg   px-16 " [ngClass]=" isAdminRoute()?'hidden':''">
+            <li *ngFor="let link of navLinks">
+                <a [routerLink]="link.path" routerLinkActive="active" class="px-2 py-1 transition-all duration-200"
+                    [ngClass]="{
+                        'text-white hover:text-gray-200 border-b-3 border-white': isHome() && currentRoute === link.path,
+                        'text-white hover:text-gray-200': isHome() && currentRoute !== link.path,
+                        'text-black  border-b-3 border-black': !isHome() && currentRoute === link.path,
+                        'text-black ': !isHome() && currentRoute !== link.path
+                    }">
+                    {{ link.label }}
+                </a>
+            </li>
+        </ul>
+        <ul class="hidden lg:flex items-center space-x-4 ml-auto px-6 gap-8" [ngClass]=" isAdminRoute()?'hidden':''">
+            <li class=" bg-[#ffffff2b] rounded-2xl p-4   ">
+                <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8.496 12.646C8.568 12.898 8.646 13.366 8.73 14.05C8.826 14.746 8.868 15.262 8.856 15.598C7.992 15.85 7.152 15.976 6.336 15.976C5.544 15.976 4.8 15.88 4.104 15.688C3.42 15.508 2.82 15.244 2.304 14.896C1.74 14.512 1.302 14.038 0.99 13.474C0.69 12.91 0.54 12.268 0.54 11.548C0.54 10.672 0.738 9.874 1.134 9.154C1.542 8.434 2.106 7.804 2.826 7.264C3.042 7.108 3.162 7.024 3.186 7.012C2.538 6.076 2.214 5.176 2.214 4.312C2.214 3.4 2.538 2.602 3.186 1.918C3.534 1.546 3.954 1.24 4.446 1C4.95 0.748 5.502 0.586 6.102 0.514C6.366 0.489999 6.564 0.477999 6.696 0.477999C7.092 0.477999 7.488 0.519999 7.884 0.604C7.944 0.904 7.974 1.486 7.974 2.35C7.974 2.734 7.962 3.022 7.938 3.214C7.038 3.214 6.342 3.262 5.85 3.358C5.01 3.514 4.59 3.784 4.59 4.168C4.59 4.456 4.788 4.786 5.184 5.158C5.352 5.326 5.622 5.53 5.994 5.77C6.87 5.542 7.734 5.392 8.586 5.32L8.658 5.392C8.658 5.86 8.628 6.442 8.568 7.138C8.52 7.834 8.46 8.302 8.388 8.542C7.872 8.578 7.302 8.65 6.678 8.758C6.066 8.866 5.526 9.016 5.058 9.208C4.482 9.436 4.02 9.712 3.672 10.036C3.324 10.36 3.15 10.732 3.15 11.152C3.15 11.692 3.45 12.1 4.05 12.376C4.65 12.652 5.502 12.79 6.606 12.79C7.122 12.79 7.752 12.742 8.496 12.646Z"
+                        fill="white" />
+                </svg>
+            </li>
+            <li>
+
+                <div class=" ">
+                    <button (click)="openModal()"
+                        class="  relative inline-flex items-center justify-center px-4 py-2 overflow-hidden  font-medium text-white bg-[#256378] rounded-lg group">
+                        <!-- Button text -->
+                        <span class="relative z-10">submit Now</span>
+
+                        <!-- Arrow icon -->
+                        <span
+                            class="relative z-10 ml-2 transition-all duration-300 group-hover:translate-x-20 group-hover:-translate-y-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
+                                fill="currentColor">
+                                <path
+                                    d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h370.7l-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z">
+                                </path>
+                            </svg>
+                        </span>
+
+                        <!-- Hover effect background -->
+                        <span
+                            class="absolute inset-0 bg-[#1a4d5f] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- القائمة الجانبية للموبايل -->
+    <!-- Mobile Menu -->
+    <div [ngClass]="{ 'menu-visible': isMenuOpen, 'menu-hidden': !isMenuOpen }"
+        class="lg:hidden overflow-hidden bg-white/90 backdrop-blur-md px-6 pb-8 pt-6 shadow-xl rounded-b-2xl transition-all duration-500 ease-in-out text-[#256378] text-sm sm:text-base">
+
+        <!-- روابط التنقل -->
+        <ul class="flex flex-col space-y-4 font-medium text-black sm:text-[#256378]">
+            <li *ngFor="let link of navLinks">
+                <a [routerLink]="link.path" routerLinkActive="font-semibold underline" (click)="isMenuOpen = false"
+                    class="block py-2 hover:text-[#1f4e60] transition-colors duration-200">
+                    {{ link.label }}
+                </a>
+            </li>
+        </ul>
+
+        <!-- أيقونة فيسبوك -->
+        <div class="mt-8 flex justify-start items-center space-x-4" [ngClass]="isAdminRoute() ? 'hidden' : ''">
+            <svg width="20" height="20" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="text-[#07070D]">
+                <path
+                    d="M8.496 12.646C8.568 12.898 8.646 13.366 8.73 14.05C8.826 14.746 8.868 15.262 8.856 15.598C7.992 15.85 7.152 15.976 6.336 15.976C5.544 15.976 4.8 15.88 4.104 15.688C3.42 15.508 2.82 15.244 2.304 14.896C1.74 14.512 1.302 14.038 0.99 13.474C0.69 12.91 0.54 12.268 0.54 11.548C0.54 10.672 0.738 9.874 1.134 9.154C1.542 8.434 2.106 7.804 2.826 7.264C3.042 7.108 3.162 7.024 3.186 7.012C2.538 6.076 2.214 5.176 2.214 4.312C2.214 3.4 2.538 2.602 3.186 1.918C3.534 1.546 3.954 1.24 4.446 1C4.95 0.748 5.502 0.586 6.102 0.514C6.366 0.489999 6.564 0.477999 6.696 0.477999C7.092 0.477999 7.488 0.519999 7.884 0.604C7.944 0.904 7.974 1.486 7.974 2.35C7.974 2.734 7.962 3.022 7.938 3.214C7.038 3.214 6.342 3.262 5.85 3.358C5.01 3.514 4.59 3.784 4.59 4.168C4.59 4.456 4.788 4.786 5.184 5.158C5.352 5.326 5.622 5.53 5.994 5.77C6.87 5.542 7.734 5.392 8.586 5.32L8.658 5.392C8.658 5.86 8.628 6.442 8.568 7.138C8.52 7.834 8.46 8.302 8.388 8.542C7.872 8.578 7.302 8.65 6.678 8.758C6.066 8.866 5.526 9.016 5.058 9.208C4.482 9.436 4.02 9.712 3.672 10.036C3.324 10.36 3.15 10.732 3.15 11.152C3.15 11.692 3.45 12.1 4.05 12.376C4.65 12.652 5.502 12.79 6.606 12.79C7.122 12.79 7.752 12.742 8.496 12.646Z"
+                    fill="currentColor" />
+            </svg>
+        </div>
+
+        <!-- زر التقديم -->
+        <div class="pt-8 w-full" [ngClass]="isAdminRoute() ? 'hidden' : ''">
+            <button (click)="openModal()"
+                class="w-full relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white bg-[#256378] rounded-lg group">
+                <span class="relative z-10">Submit Now</span>
+
+                <span
+                    class="relative z-10 ml-2 transition-all duration-300 group-hover:translate-x-20 group-hover:-translate-y-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
+                        fill="currentColor">
+                        <path
+                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h370.7l-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                    </svg>
+                </span>
+
+                <span
+                    class="absolute inset-0 bg-[#1a4d5f] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </button>
+        </div>
+    </div>
+
+
+</nav>
+<nav [ngClass]="!isAdminRoute()?'hidden':''" class="bg-white border-b border-gray-200 shadow flex-row-reverse">
+    <div class=" mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+                <svg width="120" height="120" viewBox="0 0 150 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="150" height="64" viewBox="0 0 150 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17.9437 42V22.8587H30.6617V25.9418H21.4379V30.8492H30.1479V33.9324H21.4379V38.9168H30.6617V42H17.9437ZM37.1807 42.3083C36.2044 42.3083 35.3565 42.1456 34.6371 41.8201C33.9177 41.4947 33.361 41.0322 32.9671 40.4327C32.5731 39.8161 32.3761 39.1052 32.3761 38.3002C32.3761 37.5294 32.5474 36.8443 32.89 36.2448C33.2326 35.6281 33.7636 35.1143 34.483 34.7032C35.2024 34.2921 36.1102 34.0009 37.2064 33.8296L41.7798 33.0845V35.6538L37.8488 36.3218C37.1807 36.4417 36.684 36.6558 36.3586 36.9642C36.0331 37.2725 35.8704 37.675 35.8704 38.1717C35.8704 38.6513 36.0502 39.0367 36.4099 39.3279C36.7868 39.602 37.2492 39.739 37.7974 39.739C38.4996 39.739 39.1163 39.5934 39.6473 39.3022C40.1954 38.9939 40.615 38.5743 40.9062 38.0433C41.2145 37.5123 41.3687 36.9299 41.3687 36.2961V32.6991C41.3687 32.0996 41.1289 31.6029 40.6493 31.2089C40.1868 30.7978 39.5702 30.5923 38.7994 30.5923C38.08 30.5923 37.4377 30.7893 36.8724 31.1832C36.3243 31.56 35.9218 32.0653 35.6648 32.6991L32.9157 31.3631C33.1897 30.6265 33.618 29.9928 34.2003 29.4618C34.7998 28.9137 35.5021 28.4854 36.3072 28.1771C37.1122 27.8688 37.9858 27.7147 38.9279 27.7147C40.0755 27.7147 41.0861 27.9288 41.9596 28.357C42.8332 28.7681 43.5098 29.3504 43.9894 30.1041C44.4861 30.8406 44.7345 31.7056 44.7345 32.6991V42H41.5486V39.6105L42.268 39.5592C41.9083 40.1587 41.48 40.664 40.9833 41.075C40.4866 41.469 39.9213 41.7773 39.2876 42C38.6538 42.2055 37.9515 42.3083 37.1807 42.3083ZM46.6378 42V39.2765L54.7568 29.8729L55.2707 31.0291H46.9975V28.023H58.2511V30.7721L50.2862 40.1758L49.7723 39.0196H58.3024V42H46.6378ZM60.2152 42V28.023H63.581V42H60.2152ZM60.2152 26.4557V22.8587H63.581V26.4557H60.2152ZM68.3073 42V31.0291H65.8408V28.023H68.3073V27.5605C68.3073 26.4985 68.5214 25.5993 68.9496 24.8627C69.395 24.1091 70.0116 23.5352 70.7995 23.1413C71.5874 22.7473 72.5209 22.5503 73.6001 22.5503C73.8056 22.5503 74.0283 22.5675 74.2681 22.6017C74.525 22.6189 74.7391 22.6446 74.9104 22.6788V25.5821C74.7391 25.5479 74.5764 25.5307 74.4222 25.5307C74.2852 25.5136 74.1567 25.505 74.0368 25.505C73.2832 25.505 72.7008 25.6763 72.2897 26.0189C71.8786 26.3444 71.6731 26.8582 71.6731 27.5605V28.023H77.788V31.0291H71.6731V42H68.3073ZM77.0943 42V22.5503H80.4858V42H77.0943ZM85.2956 47.6525C84.9188 47.6525 84.5505 47.6182 84.1908 47.5497C83.8311 47.4983 83.5057 47.3955 83.2145 47.2414V44.4408C83.4372 44.4922 83.7027 44.5436 84.011 44.595C84.3364 44.6464 84.6362 44.6721 84.9102 44.6721C85.681 44.6721 86.2377 44.4922 86.5803 44.1325C86.94 43.79 87.2569 43.3275 87.5309 42.7451L88.4559 40.5869L88.4045 43.4131L82.3152 28.023H85.938L90.203 39.3793H88.9184L93.1577 28.023H96.8061L90.7169 43.4131C90.3572 44.3038 89.9204 45.066 89.4065 45.6998C88.8927 46.3336 88.2932 46.8132 87.608 47.1386C86.94 47.4812 86.1692 47.6525 85.2956 47.6525Z"
+                            fill="#272727" />
+                        <path
+                            d="M134 45.7053C134 47.4944 132.55 48.9448 130.761 48.9448C128.971 48.9448 127.521 47.4944 127.521 45.7053L127.521 18.2948C127.521 16.5057 128.971 15.0553 130.761 15.0553C132.55 15.0553 134 16.5057 134 18.2948L134 45.7053Z"
+                            fill="#28B16D" />
+                        <path
+                            d="M122.786 45.7053C122.786 47.4944 121.336 48.9447 119.547 48.9447C117.758 48.9447 116.307 47.4944 116.307 45.7053L116.307 34.2427C116.307 32.4536 117.758 31.0032 119.547 31.0032C121.336 31.0032 122.786 32.4536 122.786 34.2427L122.786 45.7053Z"
+                            fill="#28B16D" />
+                        <path
+                            d="M111.572 45.7052C111.572 47.4943 110.122 48.9447 108.333 48.9447C106.544 48.9447 105.093 47.4943 105.093 45.7052C105.093 43.9161 106.544 42.4658 108.333 42.4658C110.122 42.4658 111.572 43.9161 111.572 45.7052Z"
+                            fill="#28B16D" />
+                    </svg>
+                </svg>
+            </a>
+
+            <!-- Search -->
+            <div class="relative  w-full mx-12 ">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <input type="text" name="search" placeholder="Search..."
+                    class="block w-full pl-10 pr-4 py-2 border border-white bg-gray-100 rounded-lg text-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Notification Button -->
+            <div class="relative">
+                <button (click)="toggleNotifications()"
+                    class="relative p-2 text-gray-600 hover:text-gray-800 focus:outline-none">
+                    <!-- Bell Icon -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 0.5H28C34.3513 0.5 39.5 5.64873 39.5 12V28C39.5 34.3513 34.3513 39.5 28 39.5H12C5.64873 39.5 0.5 34.3513 0.5 28V12C0.5 5.64873 5.64873 0.5 12 0.5Z"
+                            stroke="#E5E7EB" />
+                        <path
+                            d="M20.0196 10.9098C16.7096 10.9098 14.0196 13.5998 14.0196 16.9098V19.7998C14.0196 20.4098 13.7596 21.3398 13.4496 21.8598L12.2996 23.7698C11.5896 24.9498 12.0796 26.2598 13.3796 26.6998C17.6896 28.1398 22.3396 28.1398 26.6496 26.6998C27.8596 26.2998 28.3896 24.8698 27.7296 23.7698L26.5796 21.8598C26.2796 21.3398 26.0196 20.4098 26.0196 19.7998V16.9098C26.0196 13.6098 23.3196 10.9098 20.0196 10.9098Z"
+                            stroke="#272727" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" />
+                        <path
+                            d="M21.8699 11.2C21.5599 11.11 21.2399 11.04 20.9099 11C19.9499 10.88 19.0299 10.95 18.1699 11.2C18.4599 10.46 19.1799 9.94004 20.0199 9.94004C20.8599 9.94004 21.5799 10.46 21.8699 11.2Z"
+                            stroke="#272727" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M23.0195 27.06C23.0195 28.71 21.6695 30.06 20.0195 30.06C19.1995 30.06 18.4395 29.72 17.8995 29.18C17.3595 28.64 17.0195 27.88 17.0195 27.06"
+                            stroke="#272727" stroke-width="1.5" stroke-miterlimit="10" />
+                    </svg>
+                    <!-- Unread Count Badge -->
+                    <span *ngIf="unreadCount > 0"
+                        class="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full">
+                        {{ unreadCount }}
+                    </span>
+                </button>
+
+                <!-- Dropdown Notifications -->
+                <div *ngIf="showNotificationList"
+                    class="absolute right-0 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-64 dark:bg-gray-700">
+
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 max-h-64 overflow-y-auto">
+                        <li *ngFor="let noti of notifications">
+                            <div
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
+                                <div class="flex justify-between items-center">
+                                    <span [ngClass]="{'font-semibold': !noti.isRead}">{{ noti.message }}</span>
+                                    <button (click)="deleteNotification(noti.id)"
+                                        class="text-red-400 text-xs hover:underline">X</button>
+                                </div>
+                                <p class="text-xs text-gray-400">{{ noti.createdAt | date:'short' }}</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="px-4 py-2 text-center">
+                        <button (click)="markAllAsRead()" class="text-blue-500 text-sm hover:underline">
+                            Mark all as read
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</nav>
+<div *ngIf="isModalOpen" [ngClass]=" isAdminRoute()?'hidden':''"
+    class="fixed inset-0 w-full z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
+
+    <div
+        class="relative   bg-[#F8F9FA] rounded-2xl shadow-2xl   border border-gray-200 overflow-auto max-h-screen overflow-y-auto">
+        <div class="flex items-center justify-between mb-6 relative  bg-[#E9EFF2] p-4">
+
+            <!-- زرار الغلق -->
+            <button (click)="closeModal()" class="cursor-pointer">
+                <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.4734 27.7682C12.6623 27.7716 10.8685 27.417 9.19484 26.7249C7.52122 26.0327 6.00088 25.0167 4.72119 23.7351C-0.657063 18.3569 -0.657063 9.60655 4.72119 4.22836C5.99898 2.94338 7.51895 1.9246 9.19312 1.23099C10.8673 0.537387 12.6624 0.182729 14.4746 0.187548C18.1589 0.187548 21.6227 1.62199 24.2268 4.22836C26.8321 6.83361 28.2676 10.2973 28.2676 13.9817C28.2676 17.6662 26.8331 21.1299 24.2268 23.7351C22.9469 25.0167 21.4263 26.0327 19.7525 26.7248C18.0787 27.4169 16.2847 27.7715 14.4734 27.7682ZM14.4746 2.39449C12.9523 2.39015 11.4443 2.68791 10.0379 3.27053C8.63149 3.85314 7.35469 4.70903 6.28144 5.78861C4.09331 7.9768 2.88831 10.8865 2.88831 13.9817C2.88831 17.0769 4.09331 19.9856 6.28144 22.1749C10.7989 26.6924 18.1501 26.6935 22.6666 22.1749C24.8547 19.9867 26.0607 17.0769 26.0607 13.9817C26.0607 10.8865 24.8558 7.97786 22.6666 5.78861C21.5933 4.70939 20.3166 3.85373 18.9105 3.27112C17.5043 2.68851 15.9966 2.3906 14.4746 2.39449Z"
+                        fill="url(#paint0_linear_33_2348)" />
+                    <path
+                        d="M9.79231 19.7656C9.57387 19.766 9.36022 19.7016 9.17847 19.5804C8.99671 19.4593 8.85504 19.2869 8.77143 19.0851C8.68786 18.8832 8.66613 18.6611 8.709 18.4469C8.75186 18.2327 8.85738 18.0361 9.01218 17.882L18.3749 8.51924C18.4774 8.41678 18.599 8.3355 18.7328 8.28004C18.8667 8.22459 19.0102 8.19604 19.1551 8.19604C19.2999 8.19604 19.4434 8.22459 19.5773 8.28004C19.7111 8.3355 19.8327 8.41678 19.9352 8.51924C20.0376 8.62168 20.1189 8.7433 20.1744 8.87715C20.2298 9.01101 20.2584 9.15448 20.2584 9.29937C20.2584 9.44425 20.2298 9.58772 20.1744 9.72158C20.1189 9.85543 20.0376 9.97705 19.9352 10.0795L10.5724 19.4423C10.4702 19.5451 10.3487 19.6266 10.2148 19.6821C10.0808 19.7376 9.93726 19.766 9.79231 19.7656Z"
+                        fill="url(#paint1_linear_33_2348)" />
+                    <path
+                        d="M19.1557 19.7657C19.0108 19.7659 18.8672 19.7374 18.7333 19.6819C18.5995 19.6265 18.4779 19.5451 18.3756 19.4424L9.01274 10.0796C8.81018 9.87181 8.69763 9.59257 8.69949 9.30238C8.70134 9.01219 8.81744 8.73441 9.02265 8.52921C9.22785 8.32401 9.50564 8.20792 9.79583 8.20608C10.086 8.20423 10.3653 8.31679 10.5731 8.51936L19.9358 17.8821C20.0907 18.0362 20.1962 18.2328 20.2391 18.447C20.282 18.6613 20.2602 18.8834 20.1766 19.0852C20.093 19.287 19.9513 19.4594 19.7696 19.5806C19.5878 19.7017 19.3741 19.7662 19.1557 19.7657Z"
+                        fill="url(#paint2_linear_33_2348)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_33_2348" x1="14.4776" y1="0.1875" x2="14.4776" y2="27.7683"
+                            gradientUnits="userSpaceOnUse">
+                            <stop />
+                            <stop offset="1" stop-color="#001354" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_33_2348" x1="14.473" y1="8.19604" x2="14.473" y2="19.7656"
+                            gradientUnits="userSpaceOnUse">
+                            <stop />
+                            <stop offset="1" stop-color="#001354" />
+                        </linearGradient>
+                        <linearGradient id="paint2_linear_33_2348" x1="14.48" y1="8.20605" x2="14.48" y2="19.7657"
+                            gradientUnits="userSpaceOnUse">
+                            <stop />
+                            <stop offset="1" stop-color="#001354" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+            </button>
+
+            <h3 class="text-3xl  font-bold text-gray-800">
+                Support Request Form
+            </h3>
+        </div>
+        <!-- محتوى المودال -->
+        <app-support-request-form></app-support-request-form>
+    </div>
+</div>

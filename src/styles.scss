@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+/* Import the Google Font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+/* Apply it globally */
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.ibm{
+    font-family: 'IBM Plex Sans'
+}

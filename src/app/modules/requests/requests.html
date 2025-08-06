@@ -1,0 +1,80 @@
+<!-- request-table.component.html -->
+<div class="p-6 space-y-6">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+            <span class="text-sm text-gray-500">إجمالي الإيرادات</span>
+            <span class="text-2xl font-bold">$ 129,233</span>
+        </div>
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+            <span class="text-sm text-gray-500">إجمالي الطلبات المستلمة</span>
+            <span class="text-2xl font-bold">2300 طلب</span>
+        </div>
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+            <span class="text-sm text-gray-500">طلبات قيد المراجعة</span>
+            <span class="text-2xl font-bold">120 طلب</span>
+        </div>
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+            <span class="text-sm text-gray-500">الطلبات المكتملة</span>
+            <span class="text-2xl font-bold">2180 طلب</span>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white rounded-xl shadow">
+        <table class="min-w-full text-sm text-right">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th class="p-4">ORDER ID</th>
+                    <th class="p-4">NAME</th>
+                    <th class="p-4">IBAN</th>
+                    <th class="p-4"> PERSON </th>
+                    <th class="p-4">PHONE </th>
+                    <th class="p-4">  MONEY REQUIRED </th>
+                    <th class="p-4">ASSISTANCE RATE</th>
+                    <th class="p-4">ASSISTANCE AMOUNT</th>
+                    <th class="p-4">STATUS</th>
+                    <th class="p-4">...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let request of requests" class="border-b hover:bg-gray-50">
+                    <td class="p-4">{{ request.id }}</td>
+                    <td class="p-4">
+                        {{ request.name }}
+                        <div class="text-xs text-gray-400">تاريخ الإرسال: {{ request.date }}</div>
+                    </td>
+                    <td class="p-4">{{ request.iban }}</td>
+                    <td class="p-4">{{ request.type }}</td>
+                    <td class="p-4">{{ request.phone }}</td>
+                    <td class="p-4">${{ request.amount }}</td>
+                    <td class="p-4">{{ request.percentage }}%</td>
+                    <td class="p-4">${{ request.helpAmount }}</td>
+                    <td class="p-4">
+                        <span [ngClass]="statusClass(request.status)" class="px-3 py-1 text-xs rounded-full">
+                            {{ request.status }}
+                        </span>
+                    </td>
+                    <td class="p-4">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-between items-center pt-4 text-sm">
+        <div>عرض {{ (page - 1) * pageSize + 1 }} - {{ page * pageSize }} من {{ total }}</div>
+        <div class="space-x-1 rtl:space-x-reverse">
+            <button class="px-2 py-1 rounded hover:bg-gray-200" [disabled]="page === 1" (click)="prevPage()">‹</button>
+            <button class="px-2 py-1 rounded bg-blue-600 text-white">{{ page }}</button>
+            <button class="px-2 py-1 rounded hover:bg-gray-200" (click)="nextPage()">›</button>
+        </div>
+    </div>
+</div>
+
+<!-- Tailwind RTL Support -->
+<style>
+    [dir="rtl"] .rtl\:space-x-reverse> :not([hidden])~ :not([hidden]) {
+        --tw-space-x-reverse: 1;
+    }
+</style>
