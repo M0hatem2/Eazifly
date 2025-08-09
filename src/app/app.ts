@@ -6,16 +6,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Footer } from "./shared/footer/footer";
 import { NgIf } from '@angular/common';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-// ✅ Factory function for translation loader
-export function HttpLoaderFactory() {
-  return new TranslateHttpLoader();
-}
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -23,8 +13,6 @@ export function HttpLoaderFactory() {
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    TranslateModule, // ✅ Import the TranslateModule
     Navbar,
     FontAwesomeModule,
     Footer,

@@ -10,6 +10,15 @@
 body {
     font-family: 'IBM Plex Sans', sans-serif;
 }
-.ibm{
+
+.ibm {
     font-family: 'IBM Plex Sans'
+}
+
+:root[dir="rtl"] {
+    font-family: 'lalezar';
+}
+
+:root[dir="ltr"] {
+    font-family: 'IBM Plex Sans', sans-serif;
 }

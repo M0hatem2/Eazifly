@@ -1,17 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router, RouterLinkActive, RouterModule } from '@angular/router';
 import { ApplicationForm } from "../../modules/application-form/application-form";
 import { SupportRequestForm } from "../../modules/support-request-form/support-request-form";
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 interface Notification {
   id: number;
   message: string;
   isRead: boolean;
   createdAt: Date;
 }
+
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, RouterModule, RouterModule, RouterLinkActive, SupportRequestForm],
+  imports: [CommonModule, RouterModule, RouterModule, RouterLinkActive, SupportRequestForm, TranslateModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
@@ -19,11 +21,36 @@ export class Navbar {
   currentRoute: string = '';
   isMenuOpen: boolean = false;
   isAdmin = false;
+  currentLang = 'en';
+
+  switchLang(): void {
+    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en';
+    this.translate.use(this.currentLang);
+
+    // ✅ تحديث الاتجاه
+    if (isPlatformBrowser(this.platformId)) {
+      document.documentElement.dir = this.currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = this.currentLang;
+    }
+  }
 
 
 
-  constructor(private router: Router) {
-    
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // ✅ إعداد اللغة الافتراضية
+    this.translate.setDefaultLang(this.currentLang);
+    this.translate.use(this.currentLang);
+
+    // Only access document in browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      document.documentElement.dir = this.currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = this.currentLang;
+    }
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
@@ -35,11 +62,11 @@ export class Navbar {
   }
 
   navLinks = [
-    { path: '/home', label: 'Home' },
-    { path: '/how-to-apply', label: 'How To Apply' },
-    { path: '/application-form', label: 'Application Form' },
-    { path: '/terms', label: 'Terms and Conditions' },
-    { path: '/faqs', label: 'FAQs' }
+    { path: '/home', label: 'NAVBAR.HOME' },
+    { path: '/how-to-apply', label: 'NAVBAR.HOW_TO_APPLY' },
+    { path: '/application-form', label: 'NAVBAR.APPLICATION_FORM' },
+    { path: '/terms', label: 'NAVBAR.TERMS' },
+    { path: '/faqs', label: 'NAVBAR.FAQS' }
   ];
 
   isHome(): boolean {

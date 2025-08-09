@@ -15,8 +15,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-home',
   standalone: true,
   imports: [
-    Navbar,
-    Header,
+     Header,
     HowToApply,
     GetSupport,
     Packages,

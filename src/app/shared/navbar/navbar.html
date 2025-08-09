@@ -1,5 +1,5 @@
 <nav [ngClass]="isHome() ? 'text-white bg-transparent' : 'text-black bg-white shadow-md'"
-    class="fixed lg:absolute top-0 left-0 w-full z-50 transition-all duration-300 bg-white lg:bg-[#ffffff14]  shadow-2xl ">
+    class="fixed lg:absolute top-0 left-0 w-full z-50 transition-all duration-300 bg-white lg:bg-[#ffffff14]  shadow-2xl overflow-hidden">
 
     <!-- الحاوية الرئيسية -->
     <div [ngClass]=" isAdminRoute()?'hidden':''" class=" mx-auto     flex p-6  justify-between h-16">
@@ -47,12 +47,12 @@
                         'text-black  border-b-3 border-black': !isHome() && currentRoute === link.path,
                         'text-black ': !isHome() && currentRoute !== link.path
                     }">
-                    {{ link.label }}
+                    {{ link.label | translate }}
                 </a>
             </li>
         </ul>
         <ul class="hidden lg:flex items-center space-x-4 ml-auto px-6 gap-8" [ngClass]=" isAdminRoute()?'hidden':''">
-            <li class=" bg-[#ffffff2b] rounded-2xl p-4   ">
+            <li (click)="switchLang()" class=" bg-[#ffffff2b] rounded-2xl p-4  cursor-pointer ">
                 <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M8.496 12.646C8.568 12.898 8.646 13.366 8.73 14.05C8.826 14.746 8.868 15.262 8.856 15.598C7.992 15.85 7.152 15.976 6.336 15.976C5.544 15.976 4.8 15.88 4.104 15.688C3.42 15.508 2.82 15.244 2.304 14.896C1.74 14.512 1.302 14.038 0.99 13.474C0.69 12.91 0.54 12.268 0.54 11.548C0.54 10.672 0.738 9.874 1.134 9.154C1.542 8.434 2.106 7.804 2.826 7.264C3.042 7.108 3.162 7.024 3.186 7.012C2.538 6.076 2.214 5.176 2.214 4.312C2.214 3.4 2.538 2.602 3.186 1.918C3.534 1.546 3.954 1.24 4.446 1C4.95 0.748 5.502 0.586 6.102 0.514C6.366 0.489999 6.564 0.477999 6.696 0.477999C7.092 0.477999 7.488 0.519999 7.884 0.604C7.944 0.904 7.974 1.486 7.974 2.35C7.974 2.734 7.962 3.022 7.938 3.214C7.038 3.214 6.342 3.262 5.85 3.358C5.01 3.514 4.59 3.784 4.59 4.168C4.59 4.456 4.788 4.786 5.184 5.158C5.352 5.326 5.622 5.53 5.994 5.77C6.87 5.542 7.734 5.392 8.586 5.32L8.658 5.392C8.658 5.86 8.628 6.442 8.568 7.138C8.52 7.834 8.46 8.302 8.388 8.542C7.872 8.578 7.302 8.65 6.678 8.758C6.066 8.866 5.526 9.016 5.058 9.208C4.482 9.436 4.02 9.712 3.672 10.036C3.324 10.36 3.15 10.732 3.15 11.152C3.15 11.692 3.45 12.1 4.05 12.376C4.65 12.652 5.502 12.79 6.606 12.79C7.122 12.79 7.752 12.742 8.496 12.646Z"
@@ -98,19 +98,23 @@
             <li *ngFor="let link of navLinks">
                 <a [routerLink]="link.path" routerLinkActive="font-semibold underline" (click)="isMenuOpen = false"
                     class="block py-2 hover:text-[#1f4e60] transition-colors duration-200">
-                    {{ link.label }}
+                    {{ link.label | translate }}
                 </a>
             </li>
         </ul>
 
-        <!-- أيقونة فيسبوك -->
-        <div class="mt-8 flex justify-start items-center space-x-4" [ngClass]="isAdminRoute() ? 'hidden' : ''">
-            <svg width="20" height="20" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg"
-                class="text-[#07070D]">
+
+        <button  class="mt-8 flex justify-start items-center space-x-4 cursor-pointer"
+            [ngClass]=" isAdminRoute() ? 'hidden' : ''">
+            {{ currentLang === 'en' ? 'AR' : 'EN' }}<svg width=" 20" height="20" viewBox="0 0 9 16" fill="none"
+                xmlns="http://www.w3.org/2000/svg" class="text-[#07070D]">
                 <path
                     d="M8.496 12.646C8.568 12.898 8.646 13.366 8.73 14.05C8.826 14.746 8.868 15.262 8.856 15.598C7.992 15.85 7.152 15.976 6.336 15.976C5.544 15.976 4.8 15.88 4.104 15.688C3.42 15.508 2.82 15.244 2.304 14.896C1.74 14.512 1.302 14.038 0.99 13.474C0.69 12.91 0.54 12.268 0.54 11.548C0.54 10.672 0.738 9.874 1.134 9.154C1.542 8.434 2.106 7.804 2.826 7.264C3.042 7.108 3.162 7.024 3.186 7.012C2.538 6.076 2.214 5.176 2.214 4.312C2.214 3.4 2.538 2.602 3.186 1.918C3.534 1.546 3.954 1.24 4.446 1C4.95 0.748 5.502 0.586 6.102 0.514C6.366 0.489999 6.564 0.477999 6.696 0.477999C7.092 0.477999 7.488 0.519999 7.884 0.604C7.944 0.904 7.974 1.486 7.974 2.35C7.974 2.734 7.962 3.022 7.938 3.214C7.038 3.214 6.342 3.262 5.85 3.358C5.01 3.514 4.59 3.784 4.59 4.168C4.59 4.456 4.788 4.786 5.184 5.158C5.352 5.326 5.622 5.53 5.994 5.77C6.87 5.542 7.734 5.392 8.586 5.32L8.658 5.392C8.658 5.86 8.628 6.442 8.568 7.138C8.52 7.834 8.46 8.302 8.388 8.542C7.872 8.578 7.302 8.65 6.678 8.758C6.066 8.866 5.526 9.016 5.058 9.208C4.482 9.436 4.02 9.712 3.672 10.036C3.324 10.36 3.15 10.732 3.15 11.152C3.15 11.692 3.45 12.1 4.05 12.376C4.65 12.652 5.502 12.79 6.606 12.79C7.122 12.79 7.752 12.742 8.496 12.646Z"
                     fill="currentColor" />
             </svg>
+        </button>
+         <div>
+
         </div>
 
         <!-- زر التقديم -->
