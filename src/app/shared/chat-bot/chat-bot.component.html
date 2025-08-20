@@ -15,26 +15,25 @@
               backdrop-blur-md rounded-xl 
               shadow-xl border border-white/20 
               flex flex-col">
-
+    
         <!-- الهيدر -->
-        <div
-            class="bg-[#1a4d5f]/70 backdrop-blur-md text-white px-4 py-3 rounded-t-xl flex justify-between items-center">
+        <div class="bg-[#1a4d5f]/70 backdrop-blur-md text-white px-4 py-3 rounded-t-xl flex justify-between items-center">
             <span class="font-medium">Live Chat</span>
-            <button (click)="toggleChat()" class="text-white hover:text-gray-200">
-                ✕
-            </button>
+            <button (click)="toggleChat()" class="text-white hover:text-gray-200">✕</button>
         </div>
-
+    
         <!-- الرسائل -->
-        <div class="p-4 h-64 overflow-y-auto text-sm space-y-2">
+        <div class="p-4 h-64 overflow-y-auto text-sm flex flex-col gap-2">
+            <!-- رسالة البوت على الشمال -->
             <div class="bg-white/60 backdrop-blur-sm p-2 rounded-lg self-start w-fit max-w-[70%] shadow">
                 Hello! How can I help you?
             </div>
+            <!-- رسالة المستخدم على اليمين -->
             <div class="bg-[#1a4d5f]/70 text-white p-2 rounded-lg self-end w-fit max-w-[70%] shadow">
                 Hi, I have a question.
             </div>
         </div>
-
+    
         <!-- إدخال رسالة -->
         <div class="p-3 border-t border-white/20 flex items-center gap-2 backdrop-blur-sm bg-white/20">
             <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..."
@@ -45,4 +44,5 @@
             </button>
         </div>
     </div>
+
 </div>

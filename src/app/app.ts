@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Navbar } from "./shared/navbar/navbar";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Footer } from "./shared/footer/footer";
-import { NgIf, isPlatformBrowser } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, NgIf, isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService } from './core/services/translation.service';
 import { ChatBotComponent } from "./shared/chat-bot/chat-bot.component";
@@ -25,7 +25,9 @@ import { SpinnerComponent } from "./shared/spinner/spinner.component";
 
   ],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss']
+  styleUrls: ['./app.scss'],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
+
 })
 export class App implements OnInit {
   currentRoute: string = '';
