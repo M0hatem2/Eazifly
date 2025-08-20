@@ -1,0 +1,360 @@
+<div class="flex min-h-screen">
+
+
+    <div class="flex-1 overflow-auto">
+        <!-- Header -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-10 md:flex flex-col md:flex-row justify-between items-center w-full">
+    
+        <div class="flex items-center mb-4 md:mb-0">
+            <h2 class="text-2xl font-bold text-gray-900">
+                Request Management
+            </h2>
+        </div>
+    
+        <div class="flex   md:flex-row items-center w-full md:w-auto gap-4 md:gap-6">
+    
+            <div class="relative w-full md:w-64">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input type="text" placeholder="Search for requests, users..." [(ngModel)]="searchQuery"
+                    (input)="onSearch()"
+                    class="pl-4 pr-10 py-2.5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full text-sm bg-gray-50 text-gray-900">
+            </div>
+    
+            <div class="relative">
+                <button (click)="toggleNotifications()"
+                    class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors duration-300 relative focus:outline-none">
+                    <i class="far fa-bell text-2xl"></i>
+                    <span *ngIf="notifications.length > 0"
+                        class="absolute top-0 right-0 -mt-1 -mr-1.5 bg-red-600 text-white rounded-full text-xs h-4.5 w-4.5 flex items-center justify-center font-semibold animate-pulse">
+                        {{ notifications.length }}
+                    </span>
+                </button>
+    
+                <div *ngIf="showNotifications"
+                    class="absolute left-1/2 -translate-x-1/2 md:left-auto md:right-0 mt-2 w-72 bg-white shadow-xl rounded-lg border border-gray-200 overflow-hidden z-50 transform origin-top animate-scaleIn">
+                    <div class="py-2 px-4 border-b font-semibold text-gray-900">Notifications</div>
+                    <div *ngFor="let note of notifications"
+                        class="p-3  hover:bg-gray-100 cursor-pointer border-b last:border-b-0 border-gray-100 transition-colors">
+                        <p class="text-sm font-medium text-gray-800">{{ note.message }}</p>
+                        <p class="text-xs text-gray-500 mt-0.5">{{ note.time }}</p>
+                    </div>
+                    <div *ngIf="notifications.length === 0" class="p-3 text-gray-400 text-sm italic text-center">
+                        No new notifications.
+                    </div>
+                </div>
+            </div>
+    
+            <div
+                class="w-full md:w-auto border-t md:border-t-0 md:border-l border-gray-200 md:pl-4 md:ml-2 pt-4 md:pt-0 flex items-center justify-center md:justify-start gap-3">
+                <img class="h-10 w-10 rounded-full object-cover border-2 border-transparent hover:border-blue-500 transition-colors"
+                    src="https://images.unsplash.com/photo-1507003211169-0a6dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                    alt="User Profile Image">
+                <div>
+                    <p class="text-sm font-medium text-gray-900">John Doe</p>
+                    <p class="text-xs text-gray-500">Administrator</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+        <!-- Content -->
+        <div class="p-6 space-y-6">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="stats-card bg-white rounded-xl shadow-sm p-5 flex flex-col border border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-sm text-gray-500 font-medium">Total Revenue</span>
+                            <span class="text-2xl font-bold block mt-1">$129,233</span>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <i class="fas fa-dollar-sign text-primary text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm text-success">
+                        <i class="fas fa-arrow-up mr-1"></i>
+                        <span>12% increase from last month</span>
+                    </div>
+                </div>
+
+                <div class="stats-card bg-white rounded-xl shadow-sm p-5 flex flex-col border border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-sm text-gray-500 font-medium">Total Requests</span>
+                            <span class="text-2xl font-bold block mt-1">2,300</span>
+                        </div>
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <i class="fas fa-file-alt text-green-600 text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm text-success">
+                        <i class="fas fa-arrow-up mr-1"></i>
+                        <span>8% increase from last month</span>
+                    </div>
+                </div>
+
+                <div class="stats-card bg-white rounded-xl shadow-sm p-5 flex flex-col border border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-sm text-gray-500 font-medium">Pending Review</span>
+                            <span class="text-2xl font-bold block mt-1">120</span>
+                        </div>
+                        <div class="bg-amber-100 p-3 rounded-lg">
+                            <i class="fas fa-clock text-warning text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm text-warning">
+                        <i class="fas fa-arrow-down mr-1"></i>
+                        <span>5% decrease from last month</span>
+                    </div>
+                </div>
+
+                <div class="stats-card bg-white rounded-xl shadow-sm p-5 flex flex-col border border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-sm text-gray-500 font-medium">Completed</span>
+                            <span class="text-2xl font-bold block mt-1">2,180</span>
+                        </div>
+                        <div class="bg-purple-100 p-3 rounded-lg">
+                            <i class="fas fa-check-circle text-purple-600 text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm text-success">
+                        <i class="fas fa-arrow-up mr-1"></i>
+                        <span>10% increase from last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters and Actions -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 items-end">
+                        <div class="flex-grow min-w-[10rem] relative">
+                            <label for="statusFilter"
+                                class="block text-xs font-medium text-gray-600 mb-1">Status</label>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-4">
+                                <i class="fas fa-filter text-gray-400"></i>
+                            </div>
+                            <select id="statusFilter" [(ngModel)]="statusFilter" class="pl-10 pr-4 py-2.5 w-full border border-gray-300 rounded-lg shadow-sm
+                                   bg-gray-50 text-gray-900 text-sm
+                                   focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                <option value="">All Statuses</option>
+                                <option value="DONE">Completed</option>
+                                <option value="PENDING">Pending Review</option>
+                                <option value="REJECTED">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="flex-grow min-w-[10rem] relative">
+                            <label for="typeFilter" class="block text-xs font-medium text-gray-600 mb-1">Type</label>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-4">
+                                <i class="fas fa-user-tag text-gray-400"></i>
+                            </div>
+                            <select id="typeFilter" [(ngModel)]="typeFilter" class="pl-10 pr-4 py-2.5 w-full border border-gray-300 rounded-lg shadow-sm
+                                   bg-gray-50 text-gray-900 text-sm
+                                   focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                <option value="">All Types</option>
+                                <option value="INDIVIDUAL">Individual</option>
+                                <option value="FAMILY">Family</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-end gap-3 flex-wrap">
+                            <div>
+                                <label for="fromDate" class="block text-xs font-medium text-gray-600 mb-1">From</label>
+                                <input id="fromDate" type="date" [(ngModel)]="fromDate" class="px-3 py-2.5 w-full border border-gray-300 rounded-lg shadow-sm
+                                       bg-gray-50 text-gray-900 text-sm
+                                       focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+                            </div>
+                            <div>
+                                <label for="toDate" class="block text-xs font-medium text-gray-600 mb-1">To</label>
+                                <input id="toDate" type="date" [(ngModel)]="toDate" class="px-3 py-2.5 w-full border border-gray-300 rounded-lg shadow-sm
+                                       bg-gray-50 text-gray-900 text-sm
+                                       focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+                            </div>
+                            <button (click)="applyFilters()"
+                                class="w-full sm:w-auto bg-blue-600 text-white px-6 py-2.5 rounded-lg shadow-md
+                                   hover:bg-blue-700 transition-colors text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fas fa-search"></i> Apply
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button (click)="exportData()" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm
+                                   flex items-center hover:bg-gray-50 font-medium transition-colors
+                                   text-gray-900 shadow-sm">
+                            <i class="fas fa-download mr-2 text-gray-500"></i>
+                            Export
+                        </button>
+                        <button class="bg-blue-600 text-white rounded-lg px-4 py-2 text-sm
+                               flex items-center hover:bg-blue-700 font-medium transition-colors shadow-sm">
+                            <i class="fas fa-plus mr-2"></i>
+                            New Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Table -->
+            <div class="overflow-x-auto bg-white rounded-2xl shadow-md border border-gray-200">
+                <table class="min-w-full text-sm">
+                    <!-- Header -->
+                    <thead
+                        class="text-xs text-gray-600 uppercase bg-gray-100 border-b border-gray-200 sticky top-0 z-10">
+                        <tr>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-hashtag mr-1"></i> ORDER ID</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-user mr-1"></i> NAME</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-university mr-1"></i> IBAN</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-tags mr-1"></i> TYPE</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-phone mr-1"></i> PHONE</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-dollar-sign mr-1"></i> AMOUNT</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-percentage mr-1"></i> RATE</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-hand-holding-usd mr-1"></i> HELP
+                                AMOUNT</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-info-circle mr-1"></i> STATUS</th>
+                            <th class="p-4 font-semibold text-left"><i class="fas fa-cogs mr-1"></i> ACTIONS</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Body -->
+                    <tbody>
+                        <tr *ngFor="let req of paginatedRequests"
+                            class="border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200">
+
+                            <!-- ID -->
+                            <td class="p-4 font-medium text-blue-600">#REQ-{{ req.id }}</td>
+
+                            <!-- Name + Date -->
+                            <td class="p-4">
+                                <div class="font-medium text-gray-900">{{ req.name }}</div>
+                                <div class="text-xs text-gray-400 mt-1">{{ req.date }}</div>
+                            </td>
+
+                            <!-- IBAN -->
+                            <td class="p-4 font-mono text-xs text-gray-700">{{ req.iban }}</td>
+
+                            <!-- Type -->
+                            <td class="p-4">
+                                <span
+                                    class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium shadow-sm">
+                                    {{ req.type }}
+                                </span>
+                            </td>
+
+                            <!-- Phone -->
+                            <td class="p-4 text-gray-700">+966 {{ req.phone }}</td>
+
+                            <!-- Amount -->
+                            <td class="p-4 font-semibold text-gray-900">${{ req.amount | number }}</td>
+
+                            <!-- Percentage Progress -->
+                            <td class="p-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="progress-bar w-full mr-2 h-2 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+                                        <div class="progress-fill bg-primary h-2" [style.width.%]="req.percentage">
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-600">{{ req.percentage }}%</span>
+                                </div>
+                            </td>
+
+                            <!-- Help Amount -->
+                            <td class="p-4 font-semibold text-green-600">${{ req.helpAmount | number }}</td>
+
+                            <!-- Status -->
+                            <td class="p-4">
+                                <span
+                                    class="px-3 py-1 text-xs rounded-full font-medium shadow-sm flex items-center gap-1"
+                                    [ngClass]="{
+                      'bg-green-100 text-green-800': req.status === 'DONE',
+                      'bg-yellow-100 text-yellow-800': req.status === 'WAITING',
+                      'bg-red-100 text-red-800': req.status === 'DECLINED'
+                    }">
+                                    <i class="fas" [ngClass]="{
+                      'fa-check-circle': req.status === 'DONE',
+                      'fa-hourglass-half': req.status === 'WAITING',
+                      'fa-times-circle': req.status === 'DECLINED'
+                    }"></i>
+                                    {{ req.status }}
+                                </span>
+                            </td>
+
+                            <!-- Actions -->
+                            <td class="p-4">
+                                <div class="flex space-x-2">
+                                    <button (click)="viewRequest(req)" class="text-blue-600 hover:text-blue-800"
+                                        title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button (click)="editRequest(req)" class="text-yellow-600 hover:text-yellow-800"
+                                        title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button (click)="deleteRequest(req)" class="text-red-600 hover:text-red-800"
+                                        title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div
+                class="flex flex-col sm:flex-row justify-between items-center pt-4 text-sm bg-white rounded-xl shadow-sm p-5 border border-gray-100">
+
+                <!-- Info -->
+                <div class="mb-4 sm:mb-0 text-gray-500">
+                    Showing {{ (page - 1) * pageSize + 1 }}
+                    to {{ Math.min(page * pageSize, requests.length) }}
+                    of {{ requests.length }} entries
+                </div>
+
+                <!-- Page Size -->
+                <div class="flex items-center space-x-2 mb-4 sm:mb-0">
+                    <span class="text-gray-500">Rows per page:</span>
+                    <select [(ngModel)]="pageSize" class="border border-gray-300 rounded px-2 py-1 text-sm">
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="25">25</option>
+                        <option [ngValue]="50">50</option>
+                        <option [ngValue]="100">100</option>
+                    </select>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex space-x-1">
+                    <button (click)="page = 1"
+                        class="px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-100 flex items-center text-sm font-medium"
+                        [disabled]="page === 1">
+                        <i class="fas fa-angles-left mr-1"></i> First
+                    </button>
+
+                    <button (click)="prevPage()" class="px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-100"
+                        [disabled]="page === 1">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button class="px-3 py-1.5 rounded border border-primary bg-primary text-white font-medium">
+                        {{ page }}
+                    </button>
+
+                    <button (click)="nextPage()" class="px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-100"
+                        [disabled]="page * pageSize >= requests.length">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <button (click)="page = Math.ceil(requests.length / pageSize)"
+                        class="px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-100 flex items-center text-sm font-medium"
+                        [disabled]="page * pageSize >= requests.length">
+                        Last <i class="fas fa-angles-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

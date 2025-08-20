@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+/* Import the Google Font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+/* Apply it globally */
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.ibm {
+    font-family: 'IBM Plex Sans'
+}
+
+:root[dir="rtl"] {
+    font-family: 'lalezar';
+}
+
+:root[dir="ltr"] {
+    font-family: 'IBM Plex Sans', sans-serif;
+}

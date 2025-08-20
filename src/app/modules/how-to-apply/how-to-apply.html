@@ -1,0 +1,68 @@
+<section class="py-8 bg-white pt-26">
+    <div class="  mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                {{ 'HOW_TO_APPLY.TITLE' | translate }}<br>
+                <span class="hassle">{{ 'HOW_TO_APPLY.SUBTITLE' | translate }}</span>
+            </h2>
+            <p class="text-[14] font-bold text-[#3D5066]  mx-auto">
+                {{ 'HOW_TO_APPLY.DESCRIPTION' | translate }}
+            </p>
+        </div>
+
+        <div class="grid px-6 lg:px-20 gap-6 lg:grid-cols-2">
+            <!-- Feature 1 -->
+            <div class=" gap-6 p-6 rounded-lg border border-gray-200   transition-all">
+                <div class="flex-shrink-0 w-12 h-12 bg-[#FEF9E8] rounded-lg mb-3 flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-[#F8C316] text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ 'HOW_TO_APPLY.FEATURES.FAST_SUPPORT.TITLE' | translate }}</h3>
+                    <p class="text-gray-600">
+                        {{ 'HOW_TO_APPLY.FEATURES.FAST_SUPPORT.DESCRIPTION' | translate }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class=" gap-6 p-6 rounded-lg border border-gray-200   transition-all">
+                <div class="flex-shrink-0 w-12 h-12 bg-[#FEF9E8] rounded-lg mb-3 flex items-center justify-center">
+                    <i class="fa-solid  text-[#F8C316] fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ 'HOW_TO_APPLY.FEATURES.SIMPLE_PROCESS.TITLE' | translate }}</h3>
+                    <p class="text-gray-600">
+                        {{ 'HOW_TO_APPLY.FEATURES.SIMPLE_PROCESS.DESCRIPTION' | translate }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class=" gap-6 p-6 rounded-lg border border-gray-200   transition-all">
+                <div class="flex-shrink-0 w-12 h-12 bg-[#FEF9E8] rounded-lg mb-3 flex items-center justify-center">
+                    <i class="fa-solid text-[#F8C316] fa-chart-simple"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ 'HOW_TO_APPLY.FEATURES.NO_PAPERWORK.TITLE' | translate }}</h3>
+                    <p class="text-gray-600">
+                        {{ 'HOW_TO_APPLY.FEATURES.NO_PAPERWORK.DESCRIPTION' | translate }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class=" gap-6 p-6 rounded-lg border border-gray-200   transition-all">
+                <div class="flex-shrink-0 w-12 h-12 bg-[#FEF9E8] rounded-lg mb-3 flex items-center justify-center">
+                    <i class="fa-solid  text-[#F8C316] fa-key"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ 'HOW_TO_APPLY.FEATURES.ACCESSIBLE.TITLE' | translate }}</h3>
+                    <p class="text-gray-600">
+                        {{ 'HOW_TO_APPLY.FEATURES.ACCESSIBLE.DESCRIPTION' | translate }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-application-form [ngClass]="{'hidden': isHomee()}"></app-application-form>

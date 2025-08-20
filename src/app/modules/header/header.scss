@@ -1,0 +1,105 @@
+:root {
+    --light-white: #F6F6F6;
+    --font-size-6xl: clamp(2.5rem, 5vw, 3.5rem);
+    /* تحسين حجم الخط للتجاوب */
+    --primary-teal: #49d0cb;
+    --primary-blue: #256378;
+    --dark-blue: #1b4857;
+}
+
+.header {
+    height: 100%;
+    min-height: 600px;
+    max-height: 1200px;
+    background-image: url('../../../../public/assets/backGround/header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* تأثير Parallax */
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
+        z-index: 1;
+    }
+}
+
+.layout {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.title {
+    color: var(--light-white);
+    text-align: center;
+    font-size: var(--font-size-6xl);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 768px) {
+        letter-spacing: -0.5px;
+    }
+}
+
+.counters {
+    background: rgba(148, 147, 147, 0.2);
+    border-radius: 30px;
+    margin-top: 3rem;
+    width: 100%;
+
+    .counter-item {
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            background: linear-gradient(to right, var(--primary-teal), var(--light-white));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        p {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+    }
+}
+
+.cta-button {
+    background: var(--primary-blue);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        background: var(--dark-blue);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    svg {
+        transition: transform 0.3s ease;
+    }
+
+    &:hover svg {
+        transform: translateX(3px);
+    }
+}

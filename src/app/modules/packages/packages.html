@@ -1,0 +1,86 @@
+<div class="relative px-8 py-6 bg-white ">
+    <h2
+        class="text-3xl sm:text-4xl font-bold text-center mb-6 font-ibm bg-gradient-to-b from-[#000000] to-[#001354] bg-clip-text text-transparent">
+        {{ 'PACKAGES.TITLE' | translate }}
+    </h2>
+    <!-- Navigation Arrows -->
+    <button (click)="scrollLeft()"
+        class="absolute cursor-pointer  left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M15.81 30L24.19 30C27.83 30 30 27.83 30 24.19L30 15.82C30 12.17 27.83 10 24.19 10L15.82 10C12.18 10 10.01 12.17 10.01 15.81L10.01 24.19C10 27.83 12.17 30 15.81 30ZM17.21 19.47L20.74 15.94C20.89 15.79 21.08 15.72 21.27 15.72C21.46 15.72 21.65 15.79 21.8 15.94C22.09 16.23 22.09 16.71 21.8 17L18.8 20L21.8 23C22.09 23.29 22.09 23.77 21.8 24.06C21.51 24.35 21.03 24.35 20.74 24.06L17.21 20.53C16.91 20.24 16.91 19.76 17.21 19.47Z"
+                fill="#256378" />
+        </svg>
+
+    </button>
+
+    <button (click)="scrollRight()"
+        class="absolute cursor-pointer  right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M24.19 10H15.81C12.17 10 10 12.17 10 15.81V24.18C10 27.83 12.17 30 15.81 30H24.18C27.82 30 29.99 27.83 29.99 24.19V15.81C30 12.17 27.83 10 24.19 10ZM22.79 20.53L19.26 24.06C19.11 24.21 18.92 24.28 18.73 24.28C18.54 24.28 18.35 24.21 18.2 24.06C17.91 23.77 17.91 23.29 18.2 23L21.2 20L18.2 17C17.91 16.71 17.91 16.23 18.2 15.94C18.49 15.65 18.97 15.65 19.26 15.94L22.79 19.47C23.09 19.76 23.09 20.24 22.79 20.53Z"
+                fill="#256378" />
+        </svg>
+
+    </button>
+
+    <!-- Cards Container -->
+    <div #cardContainer class="flex overflow-x-auto px-4 py-6 space-x-6 max-w-[960px] mx-auto scrollbar-hide">
+        <div *ngFor="let card of cards"
+            class="flex-shrink-0 min-w-[270px] bg-white rounded-xl shadow-md overflow-hidden p-6 border border-gray-100">
+    
+            <!-- الصورة -->
+            <img class="rounded-lg mb-4 w-full h-40 object-cover" [src]="card.image || 'assets/default-image.jpg'"
+                alt="{{ 'PACKAGES.IMAGE_ALT' | translate }}" />
+    
+            <!-- Package Title -->
+            <h3 class="text-2xl font-bold text-[#256D85] mb-4">{{ card.title }}</h3>
+    
+            <!-- Funding Amount -->
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-gray-600">{{ 'PACKAGES.FUNDING_AMOUNT' | translate }}</span>
+                <span class="font-semibold text-[#256D85]">
+                    {{ card.minAmount }} $ : {{ card.maxAmount }} $
+                </span>
+            </div>
+    
+            <!-- Support Percentage -->
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-gray-600">{{ 'PACKAGES.SUPPORT_PERCENTAGE' | translate }}</span>
+                <span class="font-semibold text-[#256D85]">% {{ card.percentage }}</span>
+            </div>
+    
+            <!-- Service Fees -->
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gray-600">{{ 'PACKAGES.SERVICE_FEES' | translate }}</span>
+                <span class="font-semibold text-[#256D85]">$ {{ card.fees }}</span>
+            </div>
+    
+            <!-- CTA Button -->
+            <button
+                class="w-full py-3 px-4 bg-gray-200 hover:bg-gray-300 text-[#272727] font-medium flex items-center justify-center rounded-lg transition-all duration-300 shadow-sm hover:shadow-md group">
+                <span>{{ 'PACKAGES.GET_IT_NOW' | translate }}</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="transition-transform duration-300 group-hover:translate-x-1 ml-2">
+                    <g clip-path="url(#clip0_241_1451)">
+                        <path d="M5.83335 14.167L14.1667 5.83366" stroke="#272727" stroke-width="1.66667"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.1667 14.167L14.1667 5.83366L5.83335 5.83366" stroke="#272727" stroke-width="1.66667"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_241_1451">
+                            <rect width="20" height="20" fill="white"
+                                transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 20 20)" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </button>
+    
+        </div>
+    </div>
+
+
+
+
+</div>

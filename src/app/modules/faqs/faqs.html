@@ -1,0 +1,35 @@
+<div class="mx-auto max-w-6xl space-y-6 px-4 pb-6 bg-white" [ngClass]="{ 'pt-18': isHomee(), 'pt-26': !isHomee() }">
+    <h2 class="text-5xl font-bold bg-gradient-to-b from-[#000000] to-[#001354] bg-clip-text text-transparent text-center mb-6">
+        {{ 'FAQS.TITLE' | translate }}
+    </h2>
+
+    <div *ngFor="let faq of visibleFaqs; let i = index"
+        class="border border-gray-200 rounded-2xl shadow-sm transition-all duration-300 bg-white">
+
+        <button (click)="toggle(i)"
+            class="w-full flex justify-between items-center p-6 pb-0 text-left bg-gradient-to-b from-[#000000] to-[#001354] bg-clip-text text-transparent font-medium text-lg hover:bg-gray-50 transition duration-200">
+            <span>{{ faq.questionKey | translate }}</span>
+
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.9419 8.94948L10.0003 11.8828L7.05859 8.94948" stroke="#272727" stroke-width="1.25"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </button>
+
+        <div class="px-6 pt-0 pb-6 text-gray-600 text-sm leading-relaxed transition-all duration-300 ease-in-out font-bold"
+            [ngClass]="{ 'max-h-[500px] opacity-100 pt-4': activeIndex === i, 'max-h-0 opacity-0': activeIndex !== i }"
+            style="overflow: hidden;">
+            {{ faq.answerKey | translate }}
+        </div>
+
+    </div>
+    <div class="flex justify-end mt-6" *ngIf="isHomee()">
+        <a routerLink="/faqs"
+            class="px-6 py-2 text-[#256378] bg-white hover:bg-[#256378] hover:text-white rounded-xl border border-[#256378] font-semibold shadow-md hover:shadow-lg transition-all duration-300">
+            {{ 'FAQS.SEE_ALL' | translate }}
+        </a>
+    </div>
+
+</div>
+<app-application-form [ngClass]="{'hidden': isHomee()}"></app-application-form>

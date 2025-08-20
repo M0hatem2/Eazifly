@@ -1,0 +1,206 @@
+<nav [class.scrolled]="isScrolled" [ngClass]="isHome() ? 'text-white lg:bg-[#ffffff14] ' : 'text-black bg-[white]'"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white   shadow-2xl overflow-hidden">
+
+    <!-- الحاوية الرئيسية -->
+    <div [ngClass]=" isAdminRoute()?'hidden':''" class=" mx-auto flex p-6  justify-between h-16">
+
+        <!-- الشعار -->
+        <a routerLink="/home" class="flex items-center z-50">
+            <svg width="150" height="64" viewBox="0 0 150 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="150" height="64" fill="url(#pattern0_209_650)" />
+                <svg width="150" height="64" viewBox="0 0 150 64" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="150" height="64" fill="url(#pattern0_209_650)" />
+                    <defs>
+                        <pattern id="pattern0_209_650" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_209_650" transform="scale(0.00333333 0.0078125)" />
+                        </pattern>
+                        <image id="image0_209_650" width="300" height="128" preserveAspectRatio="none"
+                            xlink:href="data:image/png;base64,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" />
+                    </defs>
+                </svg>
+
+            </svg>
+        </a>
+
+        <!-- زر القائمة للموبايل -->
+        <button (click)="isMenuOpen = !isMenuOpen"
+            class="lg:hidden p-2 rounded-lg focus:outline-none  focus:ring-gray-300 transition duration-300"
+            [ngClass]="isHome() ? 'text-black lg:text-white' : 'text-black'">
+            <svg *ngIf="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg *ngIf="isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- روابط الديسكتوب -->
+        <ul class="hidden lg:flex items-center space-x-8 text-lg   px-16 " [ngClass]=" isAdminRoute()?'hidden':''">
+            <li *ngFor="let link of navLinks">
+                <a [routerLink]="link.path" routerLinkActive="active" class="px-2 py-1 transition-all duration-200"
+                    [ngClass]="{
+                        ' hover:text-gray-200 border-b-3 border-white': isHome() && currentRoute === link.path,
+                        ' hover:text-gray-200': isHome() && currentRoute !== link.path,
+                        'text-black  border-b-3 border-black': !isHome() && currentRoute === link.path,
+                        'text-black ': !isHome() && currentRoute !== link.path
+                    }">
+                    {{ link.label | translate }}
+                </a>
+            </li>
+        </ul>
+        <ul class="hidden lg:flex items-center space-x-4 ml-auto px-6 gap-8" [ngClass]=" isAdminRoute()?'hidden':''">
+            <button (click)="switchLang()" class="bg-[#ffffff2b] rounded-2xl p-4 z-50 cursor-pointer" (touchstart)="switchLang()" >
+                <li >
+                    <!-- أيقونة الإنجليزي -->
+                    <svg *ngIf="currentLang === 'en'" width="9" height="16" viewBox="0 0 9 16" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M8.496 12.646C8.568 12.898 8.646 13.366 8.73 14.05C8.826 14.746 8.868 15.262 8.856 15.598C7.992 15.85 7.152 15.976 6.336 15.976C5.544 15.976 4.8 15.88 4.104 15.688C3.42 15.508 2.82 15.244 2.304 14.896C1.74 14.512 1.302 14.038 0.99 13.474C0.69 12.91 0.54 12.268 0.54 11.548C0.54 10.672 0.738 9.874 1.134 9.154C1.542 8.434 2.106 7.804 2.826 7.264C3.042 7.108 3.162 7.024 3.186 7.012C2.538 6.076 2.214 5.176 2.214 4.312C2.214 3.4 2.538 2.602 3.186 1.918C3.534 1.546 3.954 1.24 4.446 1C4.95 0.748 5.502 0.586 6.102 0.514C6.366 0.489999 6.564 0.477999 6.696 0.477999C7.092 0.477999 7.488 0.519999 7.884 0.604C7.944 0.904 7.974 1.486 7.974 2.35C7.974 2.734 7.962 3.022 7.938 3.214C7.038 3.214 6.342 3.262 5.85 3.358C5.01 3.514 4.59 3.784 4.59 4.168C4.59 4.456 4.788 4.786 5.184 5.158C5.352 5.326 5.622 5.53 5.994 5.77C6.87 5.542 7.734 5.392 8.586 5.32L8.658 5.392C8.658 5.86 8.628 6.442 8.568 7.138C8.52 7.834 8.46 8.302 8.388 8.542C7.872 8.578 7.302 8.65 6.678 8.758C6.066 8.866 5.526 9.016 5.058 9.208C4.482 9.436 4.02 9.712 3.672 10.036C3.324 10.36 3.15 10.732 3.15 11.152C3.15 11.692 3.45 12.1 4.05 12.376C4.65 12.652 5.502 12.79 6.606 12.79C7.122 12.79 7.752 12.742 8.496 12.646Z"
+                            [attr.fill]="getIconColor()" />
+                    </svg>
+
+                    <!-- أيقونة العربي -->
+                    <svg *ngIf="currentLang === 'ar'" width="26" height="15" viewBox="0 0 26 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.655 11V0.53H7.78V2.555H2.935V4.7H7.09V6.71H2.935V8.975H7.78V11H0.655ZM9.64633 11V3.125H11.8663V4.46H11.9563C12.0963 4.05 12.3413 3.695 12.6913 3.395C13.0413 3.095 13.5263 2.945 14.1463 2.945C14.9563 2.945 15.5663 3.215 15.9763 3.755C16.3963 4.295 16.6063 5.065 16.6063 6.065V11H14.3863V6.245C14.3863 5.735 14.3063 5.36 14.1463 5.12C13.9863 4.87 13.7013 4.745 13.2913 4.745C13.1113 4.745 12.9363 4.77 12.7663 4.82C12.5963 4.86 12.4413 4.93 12.3013 5.03C12.1713 5.13 12.0663 5.255 11.9863 5.405C11.9063 5.545 11.8663 5.71 11.8663 5.9V11H9.64633ZM25.8719 11.57C25.8719 11.99 25.7969 12.36 25.6469 12.68C25.5069 13 25.2719 13.27 24.9419 13.49C24.6119 13.72 24.1719 13.89 23.6219 14C23.0819 14.12 22.4119 14.18 21.6119 14.18C20.9319 14.18 20.3519 14.135 19.8719 14.045C19.4019 13.965 19.0169 13.845 18.7169 13.685C18.4269 13.535 18.2119 13.345 18.0719 13.115C17.9419 12.895 17.8769 12.64 17.8769 12.35C17.8769 11.91 18.0069 11.565 18.2669 11.315C18.5269 11.065 18.8869 10.91 19.3469 10.85V10.685C18.9669 10.615 18.6819 10.455 18.4919 10.205C18.3019 9.945 18.2069 9.645 18.2069 9.305C18.2069 9.095 18.2469 8.915 18.3269 8.765C18.4169 8.605 18.5269 8.47 18.6569 8.36C18.7969 8.24 18.9569 8.145 19.1369 8.075C19.3169 8.005 19.4969 7.95 19.6769 7.91V7.85C19.1969 7.63 18.8419 7.33 18.6119 6.95C18.3819 6.56 18.2669 6.11 18.2669 5.6C18.2669 4.8 18.5419 4.16 19.0919 3.68C19.6519 3.19 20.5019 2.945 21.6419 2.945C22.1619 2.945 22.6069 2.995 22.9769 3.095V2.795C22.9769 2.375 23.0769 2.075 23.2769 1.895C23.4869 1.705 23.7819 1.61 24.1619 1.61H25.4069V3.26H23.6669V3.35C24.1269 3.57 24.4669 3.875 24.6869 4.265C24.9069 4.645 25.0169 5.09 25.0169 5.6C25.0169 6.39 24.7369 7.025 24.1769 7.505C23.6269 7.975 22.7819 8.21 21.6419 8.21C21.1319 8.21 20.6669 8.155 20.2469 8.045C20.0169 8.195 19.9019 8.405 19.9019 8.675C19.9019 8.865 19.9719 9.015 20.1119 9.125C20.2619 9.225 20.5069 9.275 20.8469 9.275H23.1269C24.0869 9.275 24.7819 9.475 25.2119 9.875C25.6519 10.275 25.8719 10.84 25.8719 11.57ZM23.7869 11.87C23.7869 11.64 23.6969 11.465 23.5169 11.345C23.3369 11.225 23.0219 11.165 22.5719 11.165H19.8719C19.7719 11.265 19.6969 11.375 19.6469 11.495C19.6069 11.625 19.5869 11.75 19.5869 11.87C19.5869 12.16 19.7119 12.37 19.9619 12.5C20.2119 12.64 20.6369 12.71 21.2369 12.71H22.1369C22.7369 12.71 23.1619 12.64 23.4119 12.5C23.6619 12.37 23.7869 12.16 23.7869 11.87ZM21.6419 6.755C22.0819 6.755 22.4069 6.665 22.6169 6.485C22.8369 6.295 22.9469 6.025 22.9469 5.675V5.495C22.9469 5.145 22.8369 4.88 22.6169 4.7C22.4069 4.51 22.0819 4.415 21.6419 4.415C21.2019 4.415 20.8719 4.51 20.6519 4.7C20.4419 4.88 20.3369 5.145 20.3369 5.495V5.675C20.3369 6.025 20.4419 6.295 20.6519 6.485C20.8719 6.665 21.2019 6.755 21.6419 6.755Z"
+                            [attr.fill]="getIconColor()" />
+                    </svg>
+                </li>
+            </button>
+
+            <li>
+
+                <div class=" ">
+                    <button (click)="openModal()"
+                        class="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white bg-[#256378] rounded-lg group transition-all duration-300">
+
+                        <!-- Button text -->
+                        <span class="relative px-2 z-10">Submit Now</span>
+
+                        <!-- Arrow icon -->
+                        <span
+                            class="relative z-10 ml-2 transform transition-all duration-300 group-hover:translate-x-3 rtl:group-hover:-translate-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"
+                                fill="currentColor" class="transition-transform duration-300 rtl:rotate-180">
+                                <path
+                                    d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h370.7l-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z">
+                                </path>
+                            </svg>
+                        </span>
+
+                        <!-- Hover effect background -->
+                        <span
+                            class="absolute inset-0 bg-[#1a4d5f] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </span>
+                    </button>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- القائمة الجانبية للموبايل -->
+    <!-- Mobile Menu -->
+    <div [ngClass]="{ 'menu-visible': isMenuOpen, 'menu-hidden': !isMenuOpen }"
+        class="lg:hidden overflow-hidden bg-white/90 backdrop-blur-md px-6 pb-8 pt-6 shadow-xl rounded-b-2xl transition-all duration-500 ease-in-out text-[#256378] text-sm sm:text-base">
+
+        <!-- روابط التنقل -->
+        <ul class="flex flex-col space-y-4 font-medium text-black sm:text-[#256378]">
+            <li *ngFor="let link of navLinks">
+                <a [routerLink]="link.path" routerLinkActive="font-semibold underline" (click)="isMenuOpen = false"
+                    class="block py-2 hover:text-[#1f4e60] transition-colors duration-200">
+                    {{ link.label | translate }}
+                </a>
+            </li>
+        </ul>
+
+
+        <button class="mt-8 flex justify-start items-center space-x-4 cursor-pointer"
+            [ngClass]=" isAdminRoute() ? 'hidden' : ''">
+            {{ currentLang === 'en' ? 'AR' : 'EN' }}<svg width=" 20" height="20" viewBox="0 0 9 16" fill="none"
+                xmlns="http://www.w3.org/2000/svg" class="text-[#07070D]">
+                <path
+                    d="M8.496 12.646C8.568 12.898 8.646 13.366 8.73 14.05C8.826 14.746 8.868 15.262 8.856 15.598C7.992 15.85 7.152 15.976 6.336 15.976C5.544 15.976 4.8 15.88 4.104 15.688C3.42 15.508 2.82 15.244 2.304 14.896C1.74 14.512 1.302 14.038 0.99 13.474C0.69 12.91 0.54 12.268 0.54 11.548C0.54 10.672 0.738 9.874 1.134 9.154C1.542 8.434 2.106 7.804 2.826 7.264C3.042 7.108 3.162 7.024 3.186 7.012C2.538 6.076 2.214 5.176 2.214 4.312C2.214 3.4 2.538 2.602 3.186 1.918C3.534 1.546 3.954 1.24 4.446 1C4.95 0.748 5.502 0.586 6.102 0.514C6.366 0.489999 6.564 0.477999 6.696 0.477999C7.092 0.477999 7.488 0.519999 7.884 0.604C7.944 0.904 7.974 1.486 7.974 2.35C7.974 2.734 7.962 3.022 7.938 3.214C7.038 3.214 6.342 3.262 5.85 3.358C5.01 3.514 4.59 3.784 4.59 4.168C4.59 4.456 4.788 4.786 5.184 5.158C5.352 5.326 5.622 5.53 5.994 5.77C6.87 5.542 7.734 5.392 8.586 5.32L8.658 5.392C8.658 5.86 8.628 6.442 8.568 7.138C8.52 7.834 8.46 8.302 8.388 8.542C7.872 8.578 7.302 8.65 6.678 8.758C6.066 8.866 5.526 9.016 5.058 9.208C4.482 9.436 4.02 9.712 3.672 10.036C3.324 10.36 3.15 10.732 3.15 11.152C3.15 11.692 3.45 12.1 4.05 12.376C4.65 12.652 5.502 12.79 6.606 12.79C7.122 12.79 7.752 12.742 8.496 12.646Z"
+                    fill="currentColor" />
+            </svg>
+        </button>
+        <div>
+
+        </div>
+
+        <!-- زر التقديم -->
+        <div class="pt-8 w-full" [ngClass]="isAdminRoute() ? 'hidden' : ''">
+            <button (click)="openModal()"
+                class="w-full relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white bg-[#256378] rounded-lg group">
+                <span class="relative z-10">Submit Now</span>
+
+                <span
+                    class="relative z-10 ml-2 transition-all duration-300 group-hover:translate-x-20 group-hover:-translate-y-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
+                        fill="currentColor">
+                        <path
+                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h370.7l-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                    </svg>
+                </span>
+
+                <span
+                    class="absolute inset-0 bg-[#1a4d5f] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </button>
+        </div>
+    </div>
+
+
+</nav>
+ 
+<div *ngIf="isModalOpen" [ngClass]=" isAdminRoute()?'hidden':''"
+    class="fixed inset-0 w-full z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
+
+    <div
+        class="relative   bg-[#F8F9FA] rounded-2xl shadow-2xl   border border-gray-200 overflow-auto max-h-screen overflow-y-auto">
+        <div class="flex items-center justify-between mb-6 relative  bg-[#E9EFF2] p-4">
+
+            <!-- زرار الغلق -->
+            <button (click)="closeModal()" class="cursor-pointer">
+                <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.4734 27.7682C12.6623 27.7716 10.8685 27.417 9.19484 26.7249C7.52122 26.0327 6.00088 25.0167 4.72119 23.7351C-0.657063 18.3569 -0.657063 9.60655 4.72119 4.22836C5.99898 2.94338 7.51895 1.9246 9.19312 1.23099C10.8673 0.537387 12.6624 0.182729 14.4746 0.187548C18.1589 0.187548 21.6227 1.62199 24.2268 4.22836C26.8321 6.83361 28.2676 10.2973 28.2676 13.9817C28.2676 17.6662 26.8331 21.1299 24.2268 23.7351C22.9469 25.0167 21.4263 26.0327 19.7525 26.7248C18.0787 27.4169 16.2847 27.7715 14.4734 27.7682ZM14.4746 2.39449C12.9523 2.39015 11.4443 2.68791 10.0379 3.27053C8.63149 3.85314 7.35469 4.70903 6.28144 5.78861C4.09331 7.9768 2.88831 10.8865 2.88831 13.9817C2.88831 17.0769 4.09331 19.9856 6.28144 22.1749C10.7989 26.6924 18.1501 26.6935 22.6666 22.1749C24.8547 19.9867 26.0607 17.0769 26.0607 13.9817C26.0607 10.8865 24.8558 7.97786 22.6666 5.78861C21.5933 4.70939 20.3166 3.85373 18.9105 3.27112C17.5043 2.68851 15.9966 2.3906 14.4746 2.39449Z"
+                        fill="url(#paint0_linear_33_2348)" />
+                    <path
+                        d="M9.79231 19.7656C9.57387 19.766 9.36022 19.7016 9.17847 19.5804C8.99671 19.4593 8.85504 19.2869 8.77143 19.0851C8.68786 18.8832 8.66613 18.6611 8.709 18.4469C8.75186 18.2327 8.85738 18.0361 9.01218 17.882L18.3749 8.51924C18.4774 8.41678 18.599 8.3355 18.7328 8.28004C18.8667 8.22459 19.0102 8.19604 19.1551 8.19604C19.2999 8.19604 19.4434 8.22459 19.5773 8.28004C19.7111 8.3355 19.8327 8.41678 19.9352 8.51924C20.0376 8.62168 20.1189 8.7433 20.1744 8.87715C20.2298 9.01101 20.2584 9.15448 20.2584 9.29937C20.2584 9.44425 20.2298 9.58772 20.1744 9.72158C20.1189 9.85543 20.0376 9.97705 19.9352 10.0795L10.5724 19.4423C10.4702 19.5451 10.3487 19.6266 10.2148 19.6821C10.0808 19.7376 9.93726 19.766 9.79231 19.7656Z"
+                        fill="url(#paint1_linear_33_2348)" />
+                    <path
+                        d="M19.1557 19.7657C19.0108 19.7659 18.8672 19.7374 18.7333 19.6819C18.5995 19.6265 18.4779 19.5451 18.3756 19.4424L9.01274 10.0796C8.81018 9.87181 8.69763 9.59257 8.69949 9.30238C8.70134 9.01219 8.81744 8.73441 9.02265 8.52921C9.22785 8.32401 9.50564 8.20792 9.79583 8.20608C10.086 8.20423 10.3653 8.31679 10.5731 8.51936L19.9358 17.8821C20.0907 18.0362 20.1962 18.2328 20.2391 18.447C20.282 18.6613 20.2602 18.8834 20.1766 19.0852C20.093 19.287 19.9513 19.4594 19.7696 19.5806C19.5878 19.7017 19.3741 19.7662 19.1557 19.7657Z"
+                        fill="url(#paint2_linear_33_2348)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_33_2348" x1="14.4776" y1="0.1875" x2="14.4776" y2="27.7683"
+                            gradientUnits="userSpaceOnUse">
+                            <stop />
+                            <stop offset="1" stop-color="#001354" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_33_2348" x1="14.473" y1="8.19604" x2="14.473" y2="19.7656"
+                            gradientUnits="userSpaceOnUse">
+                            <stop />
+                            <stop offset="1" stop-color="#001354" />
+                        </linearGradient>
+                        <linearGradient id="paint2_linear_33_2348" x1="14.48" y1="8.20605" x2="14.48" y2="19.7657"
+                            gradientUnits="userSpaceOnUse">
+                            <stop />
+                            <stop offset="1" stop-color="#001354" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+            </button>
+
+            <h3 class="text-3xl  font-bold text-gray-800">
+                Support Request Form
+            </h3>
+        </div>
+        <!-- محتوى المودال -->
+        <app-support-request-form></app-support-request-form>
+    </div>
+</div>

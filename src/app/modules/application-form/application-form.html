@@ -1,0 +1,157 @@
+<section class="w-full bg-[#F8F9FA] font-ibm overflow-hidden p-8" [ngClass]="{ 'pt-16': isHomee() }"
+    [ngClass]="{ 'pt-26': !isHomee() }">
+    <h2
+        class="text-[3rem] font-bold bg-gradient-to-b from-[#000000] to-[#001354] bg-clip-text text-transparent mb-8 text-center">
+        {{ 'APPLICATION_FORM.TITLE' | translate }}</h2>
+
+    <form>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto font-bold">
+            <!-- Full Name -->
+            <div>
+                <label for="full-name" class="block text-md font-bold text-gray-700 mb-1">{{
+                    'APPLICATION_FORM.FULL_NAME' | translate }}</label>
+                <input id="full-name" type="text" [placeholder]="'APPLICATION_FORM.FULL_NAME' | translate"
+                    class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <!-- Bank Name -->
+            <div>
+                <label for="bank-name" class="block text-md font-bold text-gray-700 mb-1">{{
+                    'APPLICATION_FORM.BANK_NAME' | translate }}</label>
+                <select id="bank-name"
+                    class="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option disabled selected>{{ 'APPLICATION_FORM.CHOOSE_COUNTRY' | translate }}</option>
+                    <option value="US">{{ 'APPLICATION_FORM.UNITED_STATES' | translate }}</option>
+                    <option value="CA">{{ 'APPLICATION_FORM.CANADA' | translate }}</option>
+                    <option value="FR">{{ 'APPLICATION_FORM.FRANCE' | translate }}</option>
+                    <option value="DE">{{ 'APPLICATION_FORM.GERMANY' | translate }}</option>
+                </select>
+            </div>
+
+            <!-- Phone Number with country code on the right -->
+            <div>
+                <label for="phone" class="block text-md font-bold text-gray-700 mb-1">{{ 'APPLICATION_FORM.PHONE_NUMBER'
+                    | translate }}</label>
+                <div class="flex flex-row-reverse">
+                    <!-- Country Code Dropdown -->
+                    <select id="countryCode"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-e-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                        <option value="+20">🇪🇬 +20</option>
+                        <option value="+966">🇸🇦 +966</option>
+                        <option value="+971">🇦🇪 +971</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                    </select>
+
+                    <!-- Phone Input -->
+                    <input type="tel" id="phone"
+                        class="w-full text-sm text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                        [placeholder]="'APPLICATION_FORM.EXAMPLE_PHONE' | translate" required />
+                </div>
+            </div>
+
+            <!-- IBAN -->
+            <div>
+                <div class="flex items-center m">
+                    <label for="iban" class="block text-md font-bold text-gray-700 mb-1">{{ 'APPLICATION_FORM.IBAN' |
+                        translate }}</label>
+                    <svg class="mx-2 flex items-center" width="14" height="15" viewBox="0 0 14 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6.66699 0.833008C10.3489 0.833008 13.334 3.8181 13.334 7.5C13.334 11.1819 10.3489 14.167 6.66699 14.167C2.98509 14.167 0 11.1819 0 7.5C1.93268e-07 3.8181 2.98509 0.833008 6.66699 0.833008ZM6.66699 7.33301C6.11482 7.33301 5.66717 7.78087 5.66699 8.33301V10C5.66717 10.5521 6.11482 11 6.66699 11C7.21917 11 7.66682 10.5521 7.66699 10V8.33301C7.66682 7.78087 7.21917 7.33301 6.66699 7.33301ZM6.66699 4.08301C6.19252 4.08317 5.80182 4.44412 5.75488 4.90625L5.75 5L5.75488 5.09375C5.80198 5.55571 6.19264 5.91585 6.66699 5.91602C7.173 5.91584 7.58283 5.506 7.58301 5C7.58284 4.52565 7.2227 4.13499 6.76074 4.08789L6.66699 4.08301ZM6.69922 4.92285C6.71883 4.93117 6.73465 4.94729 6.74316 4.9668L6.75 5L6.74316 5.03223C6.73051 5.06194 6.70129 5.08288 6.66699 5.08301C6.63264 5.08288 6.60247 5.062 6.58984 5.03223L6.58301 5C6.58319 4.95423 6.62122 4.91619 6.66699 4.91602L6.69922 4.92285Z"
+                            fill="#256378" />
+                    </svg>
+
+                </div>
+                <input type="text" id="iban" [placeholder]="'APPLICATION_FORM.ENTER_IBAN' | translate"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <!-- Total Amount Required -->
+            <div>
+                <label for="total-amount" class="block text-md font-bold text-gray-700 mb-1">{{
+                    'APPLICATION_FORM.TOTAL_AMOUNT_REQUIRED' | translate }}</label>
+                <input type="number" id="total-amount" [placeholder]="'APPLICATION_FORM.ENTER_TOTAL_AMOUNT' | translate"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <!-- Purpose of Assistance -->
+            <div>
+                <label for="purpose" class="block text-md font-bold text-gray-700 mb-1">{{
+                    'APPLICATION_FORM.PURPOSE_OF_ASSISTANCE' | translate }}</label>
+                <input type="text" id="purpose" [placeholder]="'APPLICATION_FORM.WRITE_HERE' | translate"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <!-- Required Money (with currency) -->
+            <div>
+                <label for="money" class="block text-md font-bold text-gray-700 mb-1">{{ 'APPLICATION_FORM.MONEY' |
+                    translate }}</label>
+                <div class="flex flex-row-reverse">
+                    <!-- Currency Dropdown -->
+                    <select id="countryMoney"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 text-md pe-6 rounded-e-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                        <option value="EGP">{{ 'APPLICATION_FORM.EGP' | translate }}</option>
+                        <option value="USD">{{ 'APPLICATION_FORM.USD' | translate }}</option>
+                        <option value="SAR">{{ 'APPLICATION_FORM.SAR' | translate }}</option>
+                        <option value="AED">{{ 'APPLICATION_FORM.AED' | translate }}</option>
+                    </select>
+
+                    <!-- Amount Input -->
+                    <input type="text" id="money"
+                        class="w-full text-sm text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                        [placeholder]="'APPLICATION_FORM.ENTER_AMOUNT' | translate" required />
+                </div>
+            </div>
+
+            <!-- Subscription Fees -->
+            <div>
+                <div class="flex items-center m">
+                    <label for="fees" class="block text-md font-bold text-gray-700 mb-1">{{
+                        'APPLICATION_FORM.SUBSCRIPTION_FEES' | translate }}</label>
+                    <svg class="mx-2 flex items-center" width="14" height="15" viewBox="0 0 14 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6.66699 0.833008C10.3489 0.833008 13.334 3.8181 13.334 7.5C13.334 11.1819 10.3489 14.167 6.66699 14.167C2.98509 14.167 0 11.1819 0 7.5C1.93268e-07 3.8181 2.98509 0.833008 6.66699 0.833008ZM6.66699 7.33301C6.11482 7.33301 5.66717 7.78087 5.66699 8.33301V10C5.66717 10.5521 6.11482 11 6.66699 11C7.21917 11 7.66682 10.5521 7.66699 10V8.33301C7.66682 7.78087 7.21917 7.33301 6.66699 7.33301ZM6.66699 4.08301C6.19252 4.08317 5.80182 4.44412 5.75488 4.90625L5.75 5L5.75488 5.09375C5.80198 5.55571 6.19264 5.91585 6.66699 5.91602C7.173 5.91584 7.58283 5.506 7.58301 5C7.58284 4.52565 7.2227 4.13499 6.76074 4.08789L6.66699 4.08301ZM6.69922 4.92285C6.71883 4.93117 6.73465 4.94729 6.74316 4.9668L6.75 5L6.74316 5.03223C6.73051 5.06194 6.70129 5.08288 6.66699 5.08301C6.63264 5.08288 6.60247 5.062 6.58984 5.03223L6.58301 5C6.58319 4.95423 6.62122 4.91619 6.66699 4.91602L6.69922 4.92285Z"
+                            fill="#256378" />
+                    </svg>
+
+                </div>
+
+                <input type="number" id="fees" [placeholder]="'APPLICATION_FORM.EXAMPLE_FEES' | translate"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <!-- Amount of Assistance -->
+            <div>
+                <div class="flex items-center m">
+                    <label for="assistance-amount" class="block text-md font-bold text-gray-700 mb-1">{{
+                        'APPLICATION_FORM.AMOUNT_OF_ASSISTANCE' | translate }}</label>
+                    <svg class="mx-2 flex items-center" width="14" height="15" viewBox="0 0 14 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6.66699 0.833008C10.3489 0.833008 13.334 3.8181 13.334 7.5C13.334 11.1819 10.3489 14.167 6.66699 14.167C2.98509 14.167 0 11.1819 0 7.5C1.93268e-07 3.8181 2.98509 0.833008 6.66699 0.833008ZM6.66699 7.33301C6.11482 7.33301 5.66717 7.78087 5.66699 8.33301V10C5.66717 10.5521 6.11482 11 6.66699 11C7.21917 11 7.66682 10.5521 7.66699 10V8.33301C7.66682 7.78087 7.21917 7.33301 6.66699 7.33301ZM6.66699 4.08301C6.19252 4.08317 5.80182 4.44412 5.75488 4.90625L5.75 5L5.75488 5.09375C5.80198 5.55571 6.19264 5.91585 6.66699 5.91602C7.173 5.91584 7.58283 5.506 7.58301 5C7.58284 4.52565 7.2227 4.13499 6.76074 4.08789L6.66699 4.08301ZM6.69922 4.92285C6.71883 4.93117 6.73465 4.94729 6.74316 4.9668L6.75 5L6.74316 5.03223C6.73051 5.06194 6.70129 5.08288 6.66699 5.08301C6.63264 5.08288 6.60247 5.062 6.58984 5.03223L6.58301 5C6.58319 4.95423 6.62122 4.91619 6.66699 4.91602L6.69922 4.92285Z"
+                            fill="#256378" />
+                    </svg>
+
+                </div>
+
+                <input type="number" id="assistance-amount"
+                    [placeholder]="'APPLICATION_FORM.EXAMPLE_ASSISTANCE' | translate"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+        </div>
+        <div class="flex items-center justify-center mt-6">
+            <input type="checkbox" id="terms" name="terms"
+                class="h-4 w-4 text-blue-600 border-gray-300 rounded-sm focus:ring-blue-500" required />
+            <label for="terms" class="ml-2 text-md font-bold text-[#256378]">
+                {{ 'APPLICATION_FORM.AGREE_TERMS' | translate }}
+            </label>
+        </div>
+
+        <button
+            class="mt-6 mx-auto block bg-[#256378] text-white font-bold py-2 px-30 rounded-lg hover:bg-[#1f5263] focus:outline-none focus:ring-2 focus:ring-[#256378] focus:ring-opacity-50">
+            {{ 'APPLICATION_FORM.SUBMIT_REQUEST' | translate }}
+        </button>
+    </form>
+</section>
