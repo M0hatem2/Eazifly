@@ -14,7 +14,7 @@ export default `<!doctype html>
 
 <body ngcm="">
   <app-root></app-root>
-<link rel="modulepreload" href="chunk-M3S6ARQ7.js"><link rel="modulepreload" href="chunk-LOYFCQP5.js"><link rel="modulepreload" href="chunk-XPKRC54V.js"><link rel="modulepreload" href="chunk-C7GFHYJP.js"><link rel="modulepreload" href="chunk-AUYHSMH2.js"><link rel="modulepreload" href="chunk-KN63V6KZ.js"><script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="scripts-TZWH235K.js" defer=""></script><script src="main-IKE7AHOV.js" type="module"></script></body>
+<link rel="modulepreload" href="chunk-M3S6ARQ7.js"><link rel="modulepreload" href="chunk-LOYFCQP5.js"><link rel="modulepreload" href="chunk-XPKRC54V.js"><link rel="modulepreload" href="chunk-C7GFHYJP.js"><link rel="modulepreload" href="chunk-AUYHSMH2.js"><link rel="modulepreload" href="chunk-KN63V6KZ.js"><script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="scripts-TZWH235K.js" defer=""></script><script src="main-GZQX3G4U.js" type="module"></script></body>
 <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 
 </html>`;
